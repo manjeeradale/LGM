@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo List</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+h1 {
+  color: #333;
+}
+
+.todo-container {
+  margin-top: 20px;
+}
+
+#task-input {
+  padding: 5px;
+  width: 300px;
+  font-size: 16px;
+}
+
+#add-btn {
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#add-btn:hover {
+  background-color: #45a049;
+}
+
+#task-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.task-item {
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.task-item button {
+  margin-left: 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.task-item button:hover {
+  background-color: #e53935;
+}
+
+  </style>
+</head>
+<body>
+  <h1>Todo List</h1>
+  <div class="todo-container">
+    <input type="text" id="task-input" placeholder="Enter task...">
+    <button id="add-btn">Add</button>
+  </div>
+  <ul id="task-list"></ul>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  const addBtn = document.getElementById('add-btn');
+  const taskInput = document.getElementById('task-input');
+  const taskList = document.getElementById('task-list');
+
+  addBtn.addEventListener('click', function() {
+    const task = taskInput.value.trim();
+    if (task !== '') {
+      const taskItem = document.createElement('li');
+      taskItem.classList.add('task-item');
+
+      const taskText = document.createElement('span');
+      taskText.textContent = task;
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = 'Delete';
+
+      deleteBtn.addEventListener('click', function() {
+        taskItem.remove();
+      });
+
+      taskItem.appendChild(taskText);
+      taskItem.appendChild(deleteBtn);
+      taskList.appendChild(taskItem);
+
+      taskInput.value = '';
+    }
+  });
+});
+  </script>
+</body>
+</html>
+
